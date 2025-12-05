@@ -1,22 +1,21 @@
-= An Example Quick Course
+=  Tekton Expertise Plan
 :navtitle: Home
 
 == Introduction
 
-Course Title: Course title FIXME
+Course Title:  Tekton Expertise Plan
 
 Description:
 Course description FIXME
 
 Duration: FIXME hours
 
-== Objectives
+== Topics covered in this course
 
-On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+*  The Core Duo - Task and TaskRun
+
+
 
 == Prerequisites
 

@@ -1,0 +1,181 @@
+#  Practical To-do exercise
+
+```asciidoc
+[[_practical_to_do_exercise]]
+=== Practical To-do Exercise: Your First Tekton Task and TaskRun
+
+Welcome to your first hands-on Tekton exercise! In this activity, you will solidify your understanding of `Task` and `TaskRun` by creating a simple `Task` that echoes a message and then executing it using a `TaskRun`. This exercise will demonstrate the fundamental workflow of defining an action and then triggering its execution within Tekton.
+
+==== Prerequisites
+
+Before you begin, ensure you have:
+
+*   A Kubernetes cluster with Tekton Pipelines installed. (If you haven't installed it, please refer to the Tekton installation guide.)
+*   `kubectl` installed and configured to interact with your cluster.
+*   `tkn` CLI installed (optional but highly recommended for easier interaction).
+
+==== Exercise Goal
+
+To define a Tekton `Task` that accepts a customizable message and then create a `TaskRun` to execute this `Task`, observing its successful completion and output.
+
+==== Activity Steps
+
+Let's get started with defining and running your first Tekton pipeline components.
+
+===== Step 1: Define Your First Tekton `Task`
+
+We'll start by creating a simple `Task` that takes a single parameter, `greeting-message`, and prints it to the console. This simulates a very basic build or test step.
+
+.Create a file named `my-first-task.yaml` with the following content:
+[source,yaml]
+----
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: echo-message-task
+spec:
+  params:
+    - name: greeting-message
+      description: The message to be echoed.
+      type: string
+      default: "Hello from Tekton!" # <1>
+  steps:
+    - name: echo-greeting
+      image: ubuntu:latest # <2>
+      script: |
+        #!/bin/bash
+        echo "Beginning echo-message-task..."
+        echo "Message received: $(params.greeting-message)" # <3>
+        echo "echo-message-task completed successfully!"
+----
+<1> We've provided a `default` value, so the task can still run even if the parameter isn't explicitly set in the `TaskRun`.
+<2> We're using a common base image (`ubuntu:latest`) that includes `bash` for our script.
+<3> This is how you reference a `Task` parameter within its steps. Tekton automatically substitutes `$(params.<param-name>)` with the actual value at runtime.
+
+.Apply the `Task` to your cluster:
+[source,bash]
+----
+kubectl apply -f my-first-task.yaml
+----
+
+.Verify the `Task` is created:
+[source,bash]
+----
+kubectl get task echo-message-task
+----
+You should see output similar to this, indicating your `Task` is ready:
+[source,text]
+----
+NAME              AGE
+echo-message-task   <some-duration>
+----
+
+===== Step 2: Create a `TaskRun` to Execute Your `Task`
+
+Now that your `Task` is defined, let's create a `TaskRun` resource to execute it. We'll explicitly pass a custom message to demonstrate parameter overriding.
+
+.Create a file named `my-first-taskrun.yaml` with the following content:
+[source,yaml]
+----
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  name: run-echo-message-custom
+spec:
+  taskRef:
+    name: echo-message-task # <1>
+  params:
+    - name: greeting-message
+      value: "This is a custom message from my TaskRun!" # <2>
+----
+<1> `taskRef` specifies which `Task` this `TaskRun` should execute. It must match the `metadata.name` of your `Task`.
+<2> Here, we are overriding the default `greeting-message` defined in the `Task` with our custom value.
+
+.Apply the `TaskRun` to your cluster:
+[source,bash]
+----
+kubectl apply -f my-first-taskrun.yaml
+----
+
+.Verify the `TaskRun` is created and observe its status:
+[source,bash]
+----
+kubectl get taskruns run-echo-message-custom -w # -w for watch mode
+----
+You will see its status transition. Initially, it might be `Running`, and eventually, it should become `Succeeded`.
+[source,text]
+----
+NAME                          SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+run-echo-message-custom       True        Succeeded   ...         ...
+----
+
+===== Step 3: Inspect the `TaskRun` Logs
+
+The most crucial part is to see the output of your `TaskRun` to confirm it executed as expected.
+
+.Use `tkn` CLI to view the logs (recommended):
+[source,bash]
+----
+tkn taskrun logs run-echo-message-custom
+----
+You should see output similar to this:
+[source,text]
+----
+[echo-greeting] Beginning echo-message-task...
+[echo-greeting] Message received: This is a custom message from my TaskRun!
+[echo-greeting] echo-message-task completed successfully!
+----
+
+.Alternatively, use `kubectl` to inspect the underlying Pod logs:
+First, find the Pod associated with your `TaskRun`:
+[source,bash]
+----
+kubectl get pods -l tekton.dev/taskRun=run-echo-message-custom
+----
+This will give you a Pod name like `run-echo-message-custom-pod-<random-string>`.
+Then, get the logs for the `echo-greeting` container within that Pod:
+[source,bash]
+----
+kubectl logs <pod-name-from-above> -c echo-greeting
+----
+
+==== Verification
+
+Confirm the following:
+
+*   The `TaskRun` `run-echo-message-custom` completed with a `Succeeded` status.
+*   The logs from the `echo-greeting` step contain your custom message: "Message received: This is a custom message from my TaskRun!".
+
+==== Troubleshooting Tips
+
+*   **`TaskRun` Stuck in `Pending` or `Running` for too long:**
+    *   Check `kubectl describe taskrun run-echo-message-custom` for events or conditions.
+    *   Check `kubectl get pods` to see if the associated Pod is stuck in `Pending` (might indicate resource issues or image pull problems).
+    *   Check the logs of the `tekton-pipelines-controller` Pod in the `tekton-pipelines` namespace for controller-level errors.
+*   **`TaskRun` Failed:**
+    *   Immediately use `tkn taskrun logs run-echo-message-custom` to see the exact error message from your script or command.
+    *   If the error is related to image pull, check the image name (`ubuntu:latest` in this case) for typos or network connectivity.
+    *   Ensure your `Task` definition is syntactically correct (e.g., correct `apiVersion`, `kind`, indentation).
+*   **`params` Issues:**
+    *   Double-check that the `name` of the parameter in `taskRef.params` matches the `name` defined in `Task.spec.params`.
+    *   Ensure the `type` of the parameter (e.g., `string`) is consistent.
+
+==== Challenge / Extension Activities
+
+To further enhance your understanding, try these modifications:
+
+1.  **Modify the `Task` with Multiple Steps:**
+    *   Add a second step to `echo-message-task` that runs *after* `echo-greeting`. This step could simply echo another message, or list the contents of the current directory.
+    *   Create a new `TaskRun` to execute this modified `Task` and observe the output of both steps.
+    *   *Hint:* Each step runs in its own container, but Tekton ensures they run sequentially within the `TaskRun`'s Pod.
+2.  **Explore Default Parameter Value:**
+    *   Create another `TaskRun` for `echo-message-task`, but this time, *do not* provide the `greeting-message` parameter in the `TaskRun.spec.params`.
+    *   Observe the logs. What message is displayed? (It should be the `default` value defined in the `Task`).
+3.  **Introduce an Input `Workspace` (Advanced):**
+    *   Modify `echo-message-task` to include a `workspace` declaration.
+    *   Add a step that creates a file within this `workspace` and then echoes its content.
+    *   Create a `TaskRun` that provides an `emptyDir` or `pvc` `workspace` to this `Task`.
+    *   *Hint:* Workspaces allow steps within a `Task` (and across `Tasks` in a `Pipeline`) to share persistent data.
+
+By completing this exercise, you've gained practical experience in defining and executing foundational Tekton components. You can now confidently create simple automation workflows using `Task` and `TaskRun`.
+```

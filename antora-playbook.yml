@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title:  Tekton Expertise Plan
+  start_page: rcb-demo::index.adoc
 
 content:
   sources:

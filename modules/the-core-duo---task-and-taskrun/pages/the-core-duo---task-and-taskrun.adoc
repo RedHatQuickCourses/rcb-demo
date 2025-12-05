@@ -1,0 +1,4 @@
+#  The Core Duo - Task and TaskRun
+
+* A *Task* defines a reusable, ordered set of steps (like shell commands or container images) to be executed. It's a template for work.
+* A *TaskRun* is an instance of a *Task*. It represents the actual execution of a Task, providing specific inputs and parameters for that particular run.

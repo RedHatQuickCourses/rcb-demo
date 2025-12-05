@@ -1,0 +1,5 @@
+* xref:the-core-duo---task-and-taskrun.adoc[]
+** xref:concept.adoc[]
+** xref:real-world-use-case.adoc[]
+** xref:code-config-example.adoc[]
+** xref:practical-to-do-exercise.adoc[]
