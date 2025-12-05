@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Practical To-do exercise :: Tekton Expertise Plan</title>
+    <link rel="prev" href="code-config-example.html">
+    <link rel="next" href="../appendix/appendix.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Tekton Expertise Plan</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rcb-demo" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Tekton Expertise Plan</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concept.html">Concept</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="real-world-use-case.html">Real-World Use Case</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="code-config-example.html">Code Config Example</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="practical-to-do-exercise.html">Practical To-do exercise</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Tekton Expertise Plan</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Tekton Expertise Plan</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Tekton Expertise Plan</a></li>
+    <li><a href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a></li>
+    <li><a href="practical-to-do-exercise.html">Practical To-do exercise</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Practical To-do exercise</h1>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[[_practical_to_do_exercise]]
+=== Practical To-do Exercise: Your First Tekton Task and TaskRun
+
+Welcome to your first hands-on Tekton exercise! In this activity, you will solidify your understanding of `Task` and `TaskRun` by creating a simple `Task` that echoes a message and then executing it using a `TaskRun`. This exercise will demonstrate the fundamental workflow of defining an action and then triggering its execution within Tekton.
+
+==== Prerequisites
+
+Before you begin, ensure you have:
+
+*   A Kubernetes cluster with Tekton Pipelines installed. (If you haven't installed it, please refer to the Tekton installation guide.)
+*   `kubectl` installed and configured to interact with your cluster.
+*   `tkn` CLI installed (optional but highly recommended for easier interaction).
+
+==== Exercise Goal
+
+To define a Tekton `Task` that accepts a customizable message and then create a `TaskRun` to execute this `Task`, observing its successful completion and output.
+
+==== Activity Steps
+
+Let's get started with defining and running your first Tekton pipeline components.
+
+===== Step 1: Define Your First Tekton `Task`
+
+We'll start by creating a simple `Task` that takes a single parameter, `greeting-message`, and prints it to the console. This simulates a very basic build or test step.
+
+.Create a file named `my-first-task.yaml` with the following content:
+[source,yaml]
+----
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: echo-message-task
+spec:
+  params:
+    - name: greeting-message
+      description: The message to be echoed.
+      type: string
+      default: "Hello from Tekton!" <i class="conum" data-value="1"></i><b>(1)</b>
+  steps:
+    - name: echo-greeting
+      image: ubuntu:latest <i class="conum" data-value="2"></i><b>(2)</b>
+      script: |
+        #!/bin/bash
+        echo "Beginning echo-message-task..."
+        echo "Message received: $(params.greeting-message)" <i class="conum" data-value="3"></i><b>(3)</b>
+        echo "echo-message-task completed successfully!"
+----
+&lt;1&gt; We've provided a `default` value, so the task can still run even if the parameter isn't explicitly set in the `TaskRun`.
+&lt;2&gt; We're using a common base image (`ubuntu:latest`) that includes `bash` for our script.
+&lt;3&gt; This is how you reference a `Task` parameter within its steps. Tekton automatically substitutes `$(params.&lt;param-name&gt;)` with the actual value at runtime.
+
+.Apply the `Task` to your cluster:
+[source,bash]
+----
+kubectl apply -f my-first-task.yaml
+----
+
+.Verify the `Task` is created:
+[source,bash]
+----
+kubectl get task echo-message-task
+----
+You should see output similar to this, indicating your `Task` is ready:
+[source,text]
+----
+NAME              AGE
+echo-message-task   &lt;some-duration&gt;
+----
+
+===== Step 2: Create a `TaskRun` to Execute Your `Task`
+
+Now that your `Task` is defined, let's create a `TaskRun` resource to execute it. We'll explicitly pass a custom message to demonstrate parameter overriding.
+
+.Create a file named `my-first-taskrun.yaml` with the following content:
+[source,yaml]
+----
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  name: run-echo-message-custom
+spec:
+  taskRef:
+    name: echo-message-task <i class="conum" data-value="1"></i><b>(1)</b>
+  params:
+    - name: greeting-message
+      value: "This is a custom message from my TaskRun!" <i class="conum" data-value="2"></i><b>(2)</b>
+----
+&lt;1&gt; `taskRef` specifies which `Task` this `TaskRun` should execute. It must match the `metadata.name` of your `Task`.
+&lt;2&gt; Here, we are overriding the default `greeting-message` defined in the `Task` with our custom value.
+
+.Apply the `TaskRun` to your cluster:
+[source,bash]
+----
+kubectl apply -f my-first-taskrun.yaml
+----
+
+.Verify the `TaskRun` is created and observe its status:
+[source,bash]
+----
+kubectl get taskruns run-echo-message-custom -w # -w for watch mode
+----
+You will see its status transition. Initially, it might be `Running`, and eventually, it should become `Succeeded`.
+[source,text]
+----
+NAME                          SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+run-echo-message-custom       True        Succeeded   ...         ...
+----
+
+===== Step 3: Inspect the `TaskRun` Logs
+
+The most crucial part is to see the output of your `TaskRun` to confirm it executed as expected.
+
+.Use `tkn` CLI to view the logs (recommended):
+[source,bash]
+----
+tkn taskrun logs run-echo-message-custom
+----
+You should see output similar to this:
+[source,text]
+----
+[echo-greeting] Beginning echo-message-task...
+[echo-greeting] Message received: This is a custom message from my TaskRun!
+[echo-greeting] echo-message-task completed successfully!
+----
+
+.Alternatively, use `kubectl` to inspect the underlying Pod logs:
+First, find the Pod associated with your `TaskRun`:
+[source,bash]
+----
+kubectl get pods -l tekton.dev/taskRun=run-echo-message-custom
+----
+This will give you a Pod name like `run-echo-message-custom-pod-&lt;random-string&gt;`.
+Then, get the logs for the `echo-greeting` container within that Pod:
+[source,bash]
+----
+kubectl logs &lt;pod-name-from-above&gt; -c echo-greeting
+----
+
+==== Verification
+
+Confirm the following:
+
+*   The `TaskRun` `run-echo-message-custom` completed with a `Succeeded` status.
+*   The logs from the `echo-greeting` step contain your custom message: "Message received: This is a custom message from my TaskRun!".
+
+==== Troubleshooting Tips
+
+*   **`TaskRun` Stuck in `Pending` or `Running` for too long:**
+    *   Check `kubectl describe taskrun run-echo-message-custom` for events or conditions.
+    *   Check `kubectl get pods` to see if the associated Pod is stuck in `Pending` (might indicate resource issues or image pull problems).
+    *   Check the logs of the `tekton-pipelines-controller` Pod in the `tekton-pipelines` namespace for controller-level errors.
+*   **`TaskRun` Failed:**
+    *   Immediately use `tkn taskrun logs run-echo-message-custom` to see the exact error message from your script or command.
+    *   If the error is related to image pull, check the image name (`ubuntu:latest` in this case) for typos or network connectivity.
+    *   Ensure your `Task` definition is syntactically correct (e.g., correct `apiVersion`, `kind`, indentation).
+*   **`params` Issues:**
+    *   Double-check that the `name` of the parameter in `taskRef.params` matches the `name` defined in `Task.spec.params`.
+    *   Ensure the `type` of the parameter (e.g., `string`) is consistent.
+
+==== Challenge / Extension Activities
+
+To further enhance your understanding, try these modifications:
+
+1.  **Modify the `Task` with Multiple Steps:**
+    *   Add a second step to `echo-message-task` that runs *after* `echo-greeting`. This step could simply echo another message, or list the contents of the current directory.
+    *   Create a new `TaskRun` to execute this modified `Task` and observe the output of both steps.
+    *   *Hint:* Each step runs in its own container, but Tekton ensures they run sequentially within the `TaskRun`'s Pod.
+2.  **Explore Default Parameter Value:**
+    *   Create another `TaskRun` for `echo-message-task`, but this time, *do not* provide the `greeting-message` parameter in the `TaskRun.spec.params`.
+    *   Observe the logs. What message is displayed? (It should be the `default` value defined in the `Task`).
+3.  **Introduce an Input `Workspace` (Advanced):**
+    *   Modify `echo-message-task` to include a `workspace` declaration.
+    *   Add a step that creates a file within this `workspace` and then echoes its content.
+    *   Create a `TaskRun` that provides an `emptyDir` or `pvc` `workspace` to this `Task`.
+    *   *Hint:* Workspaces allow steps within a `Task` (and across `Tasks` in a `Pipeline`) to share persistent data.
+
+By completing this exercise, you've gained practical experience in defining and executing foundational Tekton components. You can now confidently create simple automation workflows using `Task` and `TaskRun`.</code></pre>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="code-config-example.html">Code Config Example</a></span>
+  <span class="next"><a href="../appendix/appendix.html">Appendix</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

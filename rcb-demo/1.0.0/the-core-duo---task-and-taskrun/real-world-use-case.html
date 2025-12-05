@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Real-World Use Case :: Tekton Expertise Plan</title>
+    <link rel="prev" href="concept.html">
+    <link rel="next" href="code-config-example.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Tekton Expertise Plan</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rcb-demo" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Tekton Expertise Plan</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concept.html">Concept</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="real-world-use-case.html">Real-World Use Case</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="code-config-example.html">Code Config Example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="practical-to-do-exercise.html">Practical To-do exercise</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Tekton Expertise Plan</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Tekton Expertise Plan</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Tekton Expertise Plan</a></li>
+    <li><a href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a></li>
+    <li><a href="real-world-use-case.html">Real-World Use Case</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Real-World Use Case</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>To achieve the learning objectives, let&#8217;s delve into a real-world use case that perfectly illustrates the power and purpose of Tekton&#8217;s core duo: <code>Task</code> and <code>TaskRun</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_real_world_use_case"><a class="anchor" href="#_real_world_use_case"></a>Real-World Use Case: Automated Web Application Build and Test</h3>
+<div class="paragraph">
+<p>In modern software development, continuous integration (CI) and continuous delivery (CD) are paramount. A common scenario involves automatically building a web application, running its tests, and preparing it for deployment every time a developer commits changes to the source code.</p>
+</div>
+<div class="sect3">
+<h4 id="_the_challenge_without_tekton"><a class="anchor" href="#_the_challenge_without_tekton"></a>The Challenge Without Tekton</h4>
+<div class="paragraph">
+<p>Traditionally, this process might involve a complex shell script or a configuration within a monolithic CI server (like Jenkins). This approach often leads to several challenges:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Monolithic Scripts</strong>: A single, long script containing all build, test, and package steps is hard to read, maintain, and debug.</p>
+</li>
+<li>
+<p><strong>Lack of Reusability</strong>: Each project often requires duplicating similar build or test logic, leading to "copy-paste" errors and inconsistent practices.</p>
+</li>
+<li>
+<p><strong>Environmental Inconsistencies</strong>: Scripts might rely on specific tools installed on the CI agent, leading to "it works on my machine" issues and making it difficult to guarantee a consistent build environment.</p>
+</li>
+<li>
+<p><strong>Limited Scalability</strong>: Scaling such systems often means adding more monolithic agents, which might not efficiently utilize resources or provide true isolation between steps.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tektons_solution_deconstructing_cicd_with_task_and_taskrun"><a class="anchor" href="#_tektons_solution_deconstructing_cicd_with_task_and_taskrun"></a>Tekton&#8217;s Solution: Deconstructing CI/CD with <code>Task</code> and <code>TaskRun</code></h4>
+<div class="paragraph">
+<p>Tekton addresses these challenges by enabling the decomposition of complex CI/CD pipelines into smaller, reusable, and isolated units. This is precisely where <code>Task</code> and <code>TaskRun</code> shine.</p>
+</div>
+<div class="sect4">
+<h5 id="_deconstructing_the_process_with_task"><a class="anchor" href="#_deconstructing_the_process_with_task"></a>Deconstructing the Process with <code>Task</code></h5>
+<div class="paragraph">
+<p>Imagine our web application build and test process. We can identify several distinct, independent steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Clone Source Code</strong>: Fetch the latest code from a Git repository.</p>
+</li>
+<li>
+<p><strong>Install Dependencies</strong>: Download and install project dependencies (e.g., <code>npm install</code> for a Node.js application, <code>pip install</code> for Python).</p>
+</li>
+<li>
+<p><strong>Run Unit Tests</strong>: Execute the application&#8217;s unit and integration tests.</p>
+</li>
+<li>
+<p><strong>Build Application Artifact</strong>: Compile the application or bundle static assets (e.g., <code>npm run build</code>, Docker image build).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Each of these steps can be defined as a distinct Tekton <code>Task</code>. A <code>Task</code> defines a sequence of <strong>Steps</strong> (container images executing commands) that perform a specific, atomic function.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>Task</code> named <code>git-clone</code> could encapsulate the logic to clone any Git repository into a workspace.</p>
+</li>
+<li>
+<p>A <code>Task</code> named <code>npm-install</code> could take a workspace containing a <code>package.json</code> file and run <code>npm install</code>.</p>
+</li>
+<li>
+<p>A <code>Task</code> named <code>npm-test</code> could execute <code>npm test</code> within a project directory.</p>
+</li>
+<li>
+<p>A <code>Task</code> named <code>docker-build-and-push</code> could take a Dockerfile and context, build an image, and push it to a registry.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The key here is that each <code>Task</code> is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Reusable</strong>: The <code>git-clone</code> task can be used by <strong>any</strong> project that needs to fetch source code. The <code>npm-install</code> task can be used by <strong>any</strong> Node.js project.</p>
+</li>
+<li>
+<p><strong>Isolated</strong>: Each <code>Task</code> runs within its own Kubernetes Pod, leveraging containerization for consistent environments and preventing interference between different tasks.</p>
+</li>
+<li>
+<p><strong>Parameterized</strong>: <code>Tasks</code> can accept <code>params</code> (like repository URL, branch name, image tag) and define <code>workspaces</code> (for shared volumes) and <code>results</code> (for outputting data), making them highly flexible.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_executing_the_process_with_taskrun"><a class="anchor" href="#_executing_the_process_with_taskrun"></a>Executing the Process with <code>TaskRun</code></h5>
+<div class="paragraph">
+<p>While <code>Task</code> defines <strong>what</strong> needs to be done, a <code>TaskRun</code> specifies <strong>how</strong> and <strong>when</strong> a particular <code>Task</code> should be executed. A <code>TaskRun</code> is an instance of a <code>Task</code>.</p>
+</div>
+<div class="paragraph">
+<p>In our web application scenario, whenever a developer pushes new code, a new <code>TaskRun</code> would be triggered for each relevant <code>Task</code>.</p>
+</div>
+<div class="paragraph">
+<p>For instance, to build and test a specific commit of our web application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>TaskRun</code> referencing the <code>git-clone</code> <code>Task</code> would be created, providing the specific repository URL and commit SHA as <code>params</code>.</p>
+</li>
+<li>
+<p>Once <code>git-clone</code> completes, another <code>TaskRun</code> referencing the <code>npm-install</code> <code>Task</code> would be created, using the output workspace from <code>git-clone</code> as its input.</p>
+</li>
+<li>
+<p>Subsequently, a <code>TaskRun</code> for <code>npm-test</code> would be created, followed by a <code>TaskRun</code> for <code>docker-build-and-push</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of these <code>TaskRun</code> objects represents a concrete execution of its respective <code>Task</code> with the specified inputs. Tekton orchestrates these <code>TaskRuns</code> on Kubernetes, provisioning Pods, managing storage, and reporting status.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_benefits_realized"><a class="anchor" href="#_benefits_realized"></a>Benefits Realized</h4>
+<div class="paragraph">
+<p>By using <code>Task</code> and <code>TaskRun</code> in this manner, our web application CI/CD process gains:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Modularity and Reusability</strong>: Breaking down the pipeline into distinct <code>Tasks</code> promotes a modular design, allowing components to be reused across different projects and teams.</p>
+</li>
+<li>
+<p><strong>Consistency and Reliability</strong>: Each step runs in a containerized environment, guaranteeing consistent toolchains and dependencies, eliminating "works on my machine" issues.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: Tekton leverages Kubernetes' native scaling capabilities. Each <code>TaskRun</code> spawns a new Pod, meaning the CI/CD system can scale horizontally to handle many concurrent builds without complex configurations.</p>
+</li>
+<li>
+<p><strong>Clear Observability</strong>: Each <code>TaskRun</code> is a distinct Kubernetes resource, making it easy to monitor its status, logs, and resource usage directly via <code>kubectl</code> or the Tekton CLI.</p>
+</li>
+<li>
+<p><strong>Declarative Configuration</strong>: All <code>Tasks</code> and <code>TaskRuns</code> are defined as Kubernetes custom resources (YAML), allowing for version control and infrastructure-as-code practices.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This real-world example demonstrates how <code>Task</code> provides the definition of a reusable building block, and <code>TaskRun</code> provides the mechanism to instantiate and execute that block with specific parameters within a Kubernetes-native, scalable, and observable framework.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="concept.html">Concept</a></span>
+  <span class="next"><a href="code-config-example.html">Code Config Example</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

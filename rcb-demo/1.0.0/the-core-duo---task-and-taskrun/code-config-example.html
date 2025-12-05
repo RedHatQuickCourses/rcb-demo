@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Code Config Example :: Tekton Expertise Plan</title>
+    <link rel="prev" href="real-world-use-case.html">
+    <link rel="next" href="practical-to-do-exercise.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Tekton Expertise Plan</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rcb-demo" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Tekton Expertise Plan</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concept.html">Concept</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="real-world-use-case.html">Real-World Use Case</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="code-config-example.html">Code Config Example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="practical-to-do-exercise.html">Practical To-do exercise</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Tekton Expertise Plan</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Tekton Expertise Plan</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Tekton Expertise Plan</a></li>
+    <li><a href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a></li>
+    <li><a href="code-config-example.html">Code Config Example</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Code Config Example</h1>
+<div class="paragraph">
+<p>Here&#8217;s the detailed educational content for "Code Config Example" in Antora AsciiDoc format, focusing on Tekton&#8217;s <code>Task</code> and <code>TaskRun</code> resources.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[[code-config-example]]
+== Code Config Example: Task and TaskRun
+
+The true power of Tekton lies in its declarative nature, defined through Kubernetes-native YAML configurations. Understanding these configuration files is crucial for orchestrating your CI/CD pipelines. This section will walk you through the core YAML structures for `Task` and `TaskRun`, followed by a practical exercise to deploy and observe them.
+
+Tekton `Tasks` define the *what* – the atomic units of work in your pipeline. A `TaskRun` defines the *how* and *when* – an actual execution of a `Task` with specific parameters and resources.
+
+=== Understanding the Tekton Task Configuration
+
+A `Task` is a collection of ordered `steps` that execute within a `Pod` on your Kubernetes cluster. It serves as a reusable template for a specific action, like building a Docker image, running tests, or deploying an application.
+
+Let's examine a simple `Task` definition:
+
+[source,yaml]
+----
+apiVersion: tekton.dev/v1beta1 # Specifies the Tekton API version.
+kind: Task                   # Declares this Kubernetes resource as a Tekton Task.
+metadata:
+  name: hello-tekton-task    # A unique name for this Task. Follows Kubernetes naming conventions.
+  labels:
+    app.kubernetes.io/name: hello-world
+    app.kubernetes.io/instance: example
+spec:
+  description: |             # A helpful description of what this Task does.
+    This Task prints a greeting message to a specified name.
+  params:                    # Defines input parameters that can be passed to the Task.
+    - name: name_to_greet
+      description: The name to greet in the message.
+      type: string           # The expected data type for the parameter.
+      default: "Tekton Learner" # A default value if no parameter is provided during TaskRun.
+  steps:                     # An ordered list of container-based steps to execute.
+    - name: say-hello        # A unique name for this step.
+      image: ubuntu:latest   # The container image to use for this step.
+      script: |              # The script to execute inside the container.
+        #!/usr/bin/env bash
+        echo "Hello, $(params.name_to_greet) from Tekton!" # Accessing the parameter value.
+----
+
+*   `apiVersion` and `kind`: Standard Kubernetes fields identifying the resource type and API version.
+*   `metadata.name`: A unique identifier for your `Task`. This is how `TaskRuns` will reference it.
+*   `spec.description`: Provides a clear summary of the `Task`'s purpose. Good practice for maintainability.
+*   `spec.params`: Defines inputs that can be provided to the `Task`. These make your `Task` flexible and reusable. Each parameter has a `name`, `description`, `type` (e.g., `string`, `array`), and an optional `default` value.
+*   `spec.steps`: The core logic of the `Task`. Each `step` runs as a separate container within the same Kubernetes Pod, sharing the same filesystem.
+    *   `name`: A descriptive name for the step.
+    *   `image`: The container image to pull and execute.
+    *   `script`: The shell script to run inside the container. Tekton automatically mounts this script for execution. Notice how `$(params.name_to_greet)` is used to access the value of the parameter defined earlier.
+
+=== Understanding the Tekton TaskRun Configuration
+
+A `TaskRun` is a request to execute a specific `Task`. It brings the `Task` to life by providing actual values for its parameters, defining workspaces, and setting execution constraints.
+
+Here's a `TaskRun` configuration that executes our `hello-tekton-task`:
+
+[source,yaml]
+----
+apiVersion: tekton.dev/v1beta1 # Specifies the Tekton API version.
+kind: TaskRun                  # Declares this Kubernetes resource as a Tekton TaskRun.
+metadata:
+  name: hello-tekton-run       # A unique name for this specific execution of the Task.
+  labels:
+    app.kubernetes.io/name: hello-tekton-example-run
+spec:
+  taskRef:                     # References the Task to be executed.
+    name: hello-tekton-task    # The name of the Task defined previously.
+  params:                      # Overrides or sets values for the Task's parameters.
+    - name: name_to_greet
+      value: "Tekton Enthusiast" # Providing a specific value for the 'name_to_greet' parameter.
+  timeout: "5m0s"              # Maximum duration for the TaskRun before it's cancelled.
+  serviceAccountName: default  # The Kubernetes ServiceAccount to use for this TaskRun.
+----
+
+*   `apiVersion` and `kind`: Standard Kubernetes fields for a `TaskRun`.
+*   `metadata.name`: A unique name for this particular execution. Tekton generates a Pod named after this `TaskRun` to execute the steps.
+*   `spec.taskRef.name`: This is the crucial link, pointing to the `metadata.name` of the `Task` you want to execute.
+*   `spec.params`: This section allows you to pass specific values to the `Task`'s parameters. If a parameter has a `default` value in the `Task` definition and is *not* specified here, the default will be used. Here, we override `"Tekton Learner"` with `"Tekton Enthusiast"`.
+*   `spec.timeout`: Sets a maximum duration for the `TaskRun`. If the `TaskRun` takes longer than this, it will be cancelled.
+*   `spec.serviceAccountName`: Specifies the Kubernetes Service Account to use for the underlying Pod created by the `TaskRun`. This controls the permissions the `TaskRun` has within the cluster.
+
+=== Hands-on Activity: Deploying and Observing Task and TaskRun
+
+In this activity, you'll apply the Tekton `Task` and `TaskRun` configurations to your Kubernetes cluster and observe their execution.
+
+[[hands-on-deploy-taskrun]]
+==== Practical To-do exercise
+
+Before you begin, ensure you have `kubectl` configured to interact with your Kubernetes cluster and `tkn` (the Tekton CLI) installed.
+
+. Create the `Task` Definition
+.. Create a new file named `hello-tekton-task.yaml` with the `Task` configuration provided above:
++
+[source,bash]
+----
+cat &lt;&lt;EOF &gt; hello-tekton-task.yaml
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-tekton-task
+  labels:
+    app.kubernetes.io/name: hello-world
+    app.kubernetes.io/instance: example
+spec:
+  description: |
+    This Task prints a greeting message to a specified name.
+  params:
+    - name: name_to_greet
+      description: The name to greet in the message.
+      type: string
+      default: "Tekton Learner"
+  steps:
+    - name: say-hello
+      image: ubuntu:latest
+      script: |
+        #!/usr/bin/env bash
+        echo "Hello, $(params.name_to_greet) from Tekton!"
+EOF
+----
+
+.. Apply the `Task` to your cluster:
++
+[source,bash]
+----
+kubectl apply -f hello-tekton-task.yaml
+----
++
+You should see output similar to:
+`task.tekton.dev/hello-tekton-task created`
+
+. Create the `TaskRun` Definition
+.. Create a new file named `hello-tekton-run.yaml` with the `TaskRun` configuration provided above:
++
+[source,bash]
+----
+cat &lt;&lt;EOF &gt; hello-tekton-run.yaml
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: hello-tekton-run
+  labels:
+    app.kubernetes.io/name: hello-tekton-example-run
+spec:
+  taskRef:
+    name: hello-tekton-task
+  params:
+    - name: name_to_greet
+      value: "Tekton Enthusiast"
+  timeout: "5m0s"
+  serviceAccountName: default
+EOF
+----
+
+.. Apply the `TaskRun` to your cluster:
++
+[source,bash]
+----
+kubectl apply -f hello-tekton-run.yaml
+----
++
+You should see output similar to:
+`taskrun.tekton.dev/hello-tekton-run created`
+
+. Monitor the `TaskRun`
+.. You can watch the status of your `TaskRun` using `kubectl`:
++
+[source,bash]
+----
+kubectl get taskrun hello-tekton-run -w
+----
++
+You'll see its status change from `Unknown` to `Running` and eventually to `Succeeded` (or `Failed`).
+
+.. For a more Tekton-specific view and to access logs, use the `tkn` CLI:
++
+[source,bash]
+----
+tkn taskrun describe hello-tekton-run
+----
++
+This command provides a summary of the `TaskRun`, its status, and the `Task` it references.
+
+.. To view the live logs of the `TaskRun` (and the `say-hello` step), use:
++
+[source,bash]
+----
+tkn taskrun logs hello-tekton-run -f
+----
++
+You should see the output: `Hello, Tekton Enthusiast from Tekton!`
+
+. Experiment (Optional)
+.. Edit `hello-tekton-run.yaml` to change the `name_to_greet` value or remove the `params` section entirely to see the `Task`'s default value in action. Remember to change the `metadata.name` for each new `TaskRun` you create (e.g., `hello-tekton-run-2`) before applying with `kubectl apply -f`.
+.. Try applying a `TaskRun` with a non-existent `taskRef` name and observe the error messages in the `TaskRun` status.
+
+This hands-on exercise demonstrates the fundamental workflow: defining a reusable `Task` and then instantiating it with a `TaskRun`, providing specific execution details and observing the results.</code></pre>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="real-world-use-case.html">Real-World Use Case</a></span>
+  <span class="next"><a href="practical-to-do-exercise.html">Practical To-do exercise</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

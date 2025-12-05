@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Concept :: Tekton Expertise Plan</title>
+    <link rel="prev" href="the-core-duo---task-and-taskrun.html">
+    <link rel="next" href="real-world-use-case.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Tekton Expertise Plan</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rcb-demo" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Tekton Expertise Plan</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="concept.html">Concept</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="real-world-use-case.html">Real-World Use Case</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="code-config-example.html">Code Config Example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="practical-to-do-exercise.html">Practical To-do exercise</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Tekton Expertise Plan</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Tekton Expertise Plan</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Tekton Expertise Plan</a></li>
+    <li><a href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a></li>
+    <li><a href="concept.html">Concept</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Concept</h1>
+<div class="paragraph">
+<p>Here is the detailed educational content for the "Concept" of Tekton Tasks and TaskRuns, presented in Antora AsciiDoc format.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[[core-duo-concept]]
+= The Core Duo: Task and TaskRun - Concept
+
+Tekton Pipelines revolutionize CI/CD by providing a Kubernetes-native framework for defining and running serverless, decentralized pipelines. At the very heart of this system lie two fundamental concepts: *Tasks* and *TaskRuns*. Understanding these two components is crucial for anyone looking to leverage Tekton effectively. They form the building blocks for all pipeline operations, from simple script execution to complex multi-stage deployments.
+
+== The Tekton Task: The Blueprint of Work
+
+A Tekton `Task` is the fundamental, reusable definition of a piece of work that needs to be performed. Think of a `Task` as a function or a recipe. It specifies *what* needs to be done, outlining a sequence of steps, defining inputs, outputs, and any required resources or workspaces. However, a `Task` itself doesn't actually *do* anything; it's merely a template or a blueprint.
+
+[[task-characteristics]]
+=== Key Characteristics of a Task
+
+*   **Atomic Unit of Work:** Each Task represents a single, self-contained unit of work, such as building an image, running tests, or deploying an application.
+*   **Reusable:** A Task is designed to be highly reusable across different pipelines and scenarios. You define it once and can use it many times.
+*   **Declarative:** Tasks are defined declaratively using YAML, specifying the desired state and actions without detailing the underlying execution mechanism.
+*   **Container-Native Steps:** Each step within a Task runs as a separate container within a Kubernetes Pod, leveraging the power and isolation of containers.
+
+[[task-components]]
+=== Core Components of a Task
+
+A Tekton Task typically comprises several key sections:
+
+*   `apiVersion` and `kind`: Standard Kubernetes object identifiers (`tekton.dev/v1beta1`, `Task`).
+*   `metadata`: Name, labels, and annotations for the Task.
+*   `spec`: The core definition of the Task, including:
+    *   `params`: (Optional) Input parameters that can be passed to the Task when it's executed. These allow Tasks to be flexible and configurable.
+    *   `workspaces`: (Optional) Definitions of volumes or persistent storage that steps within the Task might need to share data or store artifacts.
+    *   `steps`: The most crucial part, an ordered list of container images to run. Each step executes a specific command or script within its own container.
+    *   `results`: (Optional) Values that the Task can produce as output, which can then be consumed by subsequent Tasks in a Pipeline.
+
+=== Example Illustrative Structure of a Task
+
+While a full executable example will come later, this conceptual structure helps illustrate the Task's definition:
+
+[source,yaml]
+----
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-and-test-app
+spec:
+  params: # Define input parameters
+    - name: image-url
+      type: string
+      description: The URL of the Docker image to build.
+    - name: path-to-tests
+      type: string
+      default: "./tests"
+      description: The directory containing test scripts.
+  workspaces: # Define shared workspaces
+    - name: source-code
+      description: Mount path for application source code.
+  steps: # Define the sequence of actions
+    - name: build-image
+      image: docker:dind # Docker-in-Docker image for building
+      script: |
+        #!/bin/bash
+        docker build -t $(params.image-url) .
+      workingDir: $(workspaces.source-code.path) # Use the shared workspace
+    - name: run-tests
+      image: alpine/git # An image with testing tools
+      script: |
+        #!/bin/bash
+        echo "Running tests in $(params.path-to-tests)..."
+        # Example: some-test-runner $(params.path-to-tests)
+        echo "Tests passed!"
+      workingDir: $(workspaces.source-code.path)
+  results: # Define what outputs the Task might produce
+    - name: built-image-digest
+      description: The digest of the built Docker image.
+----
+
+In this conceptual example, the `build-and-test-app` Task defines two steps (`build-image` and `run-tests`), expects an `image-url` and `path-to-tests` as input, and will use a `source-code` workspace.
+
+== The Tekton TaskRun: Bringing the Blueprint to Life
+
+If a `Task` is the blueprint, then a `TaskRun` is the actual construction project. A `TaskRun` is a Kubernetes resource that triggers the execution of a specific `Task`. When you create a `TaskRun`, Tekton takes the definition from the referenced `Task` and creates a Kubernetes Pod (or a set of Pods) to execute its steps. Each `TaskRun` represents a single, independent execution of a Task.
+
+[[taskrun-characteristics]]
+=== Key Characteristics of a TaskRun
+
+*   **Execution Instance:** A TaskRun is a single, concrete execution of a Task.
+*   **Configurable:** It allows you to provide specific values for the Task's parameters, link to actual Kubernetes resources for workspaces, and define runtime specifics like service accounts or timeouts.
+*   **Ephemeral Pods:** Each TaskRun creates one or more Kubernetes Pods that house the containers for each step. These Pods are typically cleaned up once the TaskRun completes (or fails).
+*   **Status Tracking:** A TaskRun tracks the execution status, logs, and results of its associated Task, providing real-time feedback on progress.
+
+[[taskrun-components]]
+=== Core Components of a TaskRun
+
+A Tekton TaskRun typically includes:
+
+*   `apiVersion` and `kind`: Standard Kubernetes object identifiers (`tekton.dev/v1beta1`, `TaskRun`).
+*   `metadata`: Name, labels, and annotations for the TaskRun.
+*   `spec`: The core definition of this specific execution:
+    *   `taskRef`: (Mandatory) A reference to the `Task` object that this `TaskRun` will execute.
+    *   `params`: (Optional) Actual values for the parameters defined in the referenced Task. These override any default values in the Task.
+    *   `workspaces`: (Optional) Specific PVCs (Persistent Volume Claims), empty directories, or other volume sources to fulfill the `workspaces` defined in the Task.
+    *   `serviceAccountName`: (Optional) The Kubernetes Service Account to use for the Pod(s) created by the TaskRun, controlling permissions.
+    *   `timeout`: (Optional) A duration string (e.g., "1h30m") to specify how long the TaskRun should wait before timing out.
+
+=== Example Illustrative Structure of a TaskRun
+
+Using our conceptual `build-and-test-app` Task, here's how a `TaskRun` might look:
+
+[source,yaml]
+----
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: run-build-v1-0-0
+spec:
+  taskRef: # Reference the Task to execute
+    name: build-and-test-app
+  params: # Provide concrete values for Task parameters
+    - name: image-url
+      value: "myregistry/my-app:1.0.0"
+    - name: path-to-tests
+      value: "unit-tests/"
+  workspaces: # Bind Task workspaces to actual volumes
+    - name: source-code
+      volumeClaimTemplate: # Example: dynamically provision a PVC
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 500Mi
+  serviceAccountName: tekton-ci-sa # Specify a service account
+  timeout: "30m" # Set a timeout for this specific execution
+----
+
+In this `TaskRun`, we're triggering the `build-and-test-app` Task. We provide specific values for `image-url` and `path-to-tests` and provision a temporary `PersistentVolumeClaim` for the `source-code` workspace.
+
+== The Relationship: Blueprint and Execution
+
+The relationship between a `Task` and a `TaskRun` is analogous to that between a class and an object in object-oriented programming, or a function definition and a function call.
+
+*   A `Task` is a **definition**; a `TaskRun` is an **instance of that definition**.
+*   A `Task` is **reusable**; a `TaskRun` is a **single execution**.
+*   You can have **many `TaskRuns`** from a single `Task` definition, each with different parameters, workspaces, or configurations.
+
+This clear separation of concerns provides immense flexibility. You define your logical units of work once (Tasks) and then dynamically execute them with varying inputs and environments (TaskRuns). This modularity is a cornerstone of Tekton's power, enabling the creation of robust, scalable, and adaptable CI/CD systems.</code></pre>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="the-core-duo---task-and-taskrun.html">The Core Duo - Task and TaskRun</a></span>
+  <span class="next"><a href="real-world-use-case.html">Real-World Use Case</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
